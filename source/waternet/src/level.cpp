@@ -483,39 +483,35 @@ void initLevel(unsigned long aRandomSeed)
     {
         randomSeed(aRandomSeed); 
     }
+    maxLevel = levelCount;
     //set boardsize and max level based on difficulty
     switch (difficulty)
     {
         case diffVeryEasy:
             boardWidth = 5;
             boardHeight = 5;
-            maxLevel = levelCount;
             break;
         case diffEasy:
             boardWidth = 6;
             boardHeight = 6;
-            maxLevel = levelCount;
             break;
         case diffNormal:
             boardWidth = 7;
             boardHeight = 7;
-            maxLevel = levelCount;
             break;
         case diffHard:
             boardWidth = 8;
             boardHeight = 8;
-            maxLevel = levelCount;
             break;
         case diffVeryHard:
             boardWidth = 10;
             boardHeight = 8;
-            maxLevel = levelCount;
             break;    
         case diffRandom:
             uint8_t rnd = random(255);
-            boardWidth = 5 + (rnd % 5);  
+            boardWidth = 5 + (rnd % (maxBoardWidth - 5 + 1)); //5 is smallest level width from very easy
             rnd = random(255);
-            boardHeight = 5 + (rnd % 3);
+            boardHeight = 5 + (rnd % (maxBoardHeight - 5 + 1)); //5 is smallest level height from very easy
             maxLevel = 0; //special value with random
             break;
     }
