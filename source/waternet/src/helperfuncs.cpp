@@ -6,11 +6,12 @@
 
 #include "../res/blocktiles.h"
 
-const unsigned char *currentTiles = NULL;
+const unsigned char *currentTiles = nullptr;
 
 void set_bkg_tile_xy(uint8_t x, uint8_t y, uint8_t tile)
 {
-  arduboy.drawBitmap(x * 8, y * 8, &currentTiles[2 + (tile * 8)] , 8, 8);
+  if(currentTiles != nullptr)
+    arduboy.drawBitmap(x * 8, y * 8, &currentTiles[2 + (tile * 8)] , 8, 8);
 }
 
 void set_bkg_data(const unsigned char *tiles)
