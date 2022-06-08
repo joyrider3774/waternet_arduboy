@@ -9,8 +9,7 @@ constexpr uint8_t maxCursorFrameCount = (uint8_t)(10 * frameRate / 60);
 constexpr uint8_t cursorAnimCount = 2; //blink on & off
 constexpr uint8_t cursorNumTiles = 16; //for the max 2 cursors shown at once (on help screens) 
 
-uint8_t cursorFrameCount, cursorFrame;
-uint8_t showCursor = 1;
+uint8_t cursorFrameCount, cursorFrame, showCursor;
 uint8_t spritePos[cursorNumTiles][2];
 
 void move_sprite(uint8_t sprite, uint8_t x, uint8_t y)

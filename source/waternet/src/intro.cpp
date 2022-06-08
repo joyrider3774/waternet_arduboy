@@ -7,13 +7,15 @@
 #include "../res/titlescreenmap.h"
 #include "../res/blocktiles.h"
 
-uint16_t frames = 0;
-float titlePosY = 8*8;
-constexpr uint8_t FRAMEDELAY = 16 * frameRate / 15;    
+uint16_t frames;
+float titlePosY;
+constexpr uint8_t frameDelay = 16 * frameRate / 15;    
 
 void initIntro()
 {
-    set_bkg_data(blockTiles);   
+    set_bkg_data(blockTiles);
+    titlePosY = arduboy.height();
+    frames = 0;   
 }
 
 void intro() 
@@ -26,15 +28,17 @@ void intro()
     
     frames++;
     arduboy.clear();
-    if (frames < FRAMEDELAY)
+    if (frames < frameDelay)
     {
-        printMessage((16-12) >> 1, 4, F("WILLEMS DAVY"));
+        //16-12
+        printMessage(4 >> 1, 4, F("WILLEMS DAVY"));
     }
     else
     {
-        if (frames < FRAMEDELAY *2)
+        if (frames < frameDelay *2)
         {
-            printMessage((16-8) >> 1, 4, F("PRESENTS"));
+            //16-8
+            printMessage(8 >> 1, 4, F("PRESENTS"));
         }
         else
         {
