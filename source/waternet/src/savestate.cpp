@@ -5,7 +5,7 @@
 #include "commonvars.h"
 
 
-constexpr int eepRomStart = 628;
+constexpr int eepRomStart = 493;
 constexpr uint8_t soundOptionBit = 0U;
 constexpr uint8_t musicOptionBit = 1U; 
 
@@ -177,12 +177,6 @@ uint8_t isSoundOnSaveState()
     return checkBit8(options, soundOptionBit);
 }
 
-void unlockLevel(uint8_t mode, uint8_t diff, uint8_t level)
-{
-    packLevelLock(mode, diff, level + 1);
-    saveSaveState();
-}
-
 uint8_t levelUnlocked(uint8_t mode, uint8_t diff, uint8_t level)
 {
     return (unPackLevelLock(mode, diff) > level);
@@ -191,4 +185,13 @@ uint8_t levelUnlocked(uint8_t mode, uint8_t diff, uint8_t level)
 uint8_t lastUnlockedLevel(uint8_t mode, uint8_t diff)
 {
     return unPackLevelLock(mode, diff);
+}
+
+void unlockLevel(uint8_t mode, uint8_t diff, uint8_t level)
+{
+    if (level > lastUnlockedLevel(mode, diff))
+    {
+        packLevelLock(mode, diff, level + 1);
+        saveSaveState();
+    }
 }
