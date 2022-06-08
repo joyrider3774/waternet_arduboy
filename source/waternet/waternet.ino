@@ -28,7 +28,7 @@ void setup()
     titleStep = tsMainMenu;
     gameMode = gmRotate;
     arduboy.begin();
-    arduboy.setFrameRate(FRAMERATE);
+    arduboy.setFrameRate(frameRate);
     //has to be called first because initsound and initmusic read savestate sound to set intial flags
     initSaveState();
     initSound();

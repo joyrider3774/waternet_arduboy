@@ -5,10 +5,9 @@
 #include "commonvars.h"
 
 
-constexpr int EEPROM_START = 628;
-
-constexpr uint8_t SOUND_OPTION_BIT = 0U;
-constexpr uint8_t MUSIC_OPTION_BIT = 1U; 
+constexpr int eepRomStart = 628;
+constexpr uint8_t soundOptionBit = 0U;
+constexpr uint8_t musicOptionBit = 1U; 
 
 uint32_t levelLocksPacked[3];
 uint8_t options = 0; //bit 0 sound on/off, bit 1 music on/off
@@ -115,7 +114,7 @@ uint8_t validateSaveState()
 void initSaveState()
 {
     //read eeprom  
-    addrLevelLocksPacked = EEPROM_START;
+    addrLevelLocksPacked = eepRomStart;
     EEPROM.get(addrLevelLocksPacked, levelLocksPacked);
     addrOptions = addrLevelLocksPacked + sizeof(levelLocksPacked);
     EEPROM.get(addrOptions, options);
@@ -146,36 +145,36 @@ void setMusicOnSaveState(uint8_t value)
 {
     if (value)
     {
-        options = setBit8(options, MUSIC_OPTION_BIT);
+        options = setBit8(options, musicOptionBit);
     }
     else
     {
-        options = clearBit8(options, MUSIC_OPTION_BIT);
+        options = clearBit8(options, musicOptionBit);
     }
     saveSaveState();  
 }
 
 uint8_t isMusicOnSaveState()
 {
-    return checkBit8(options, MUSIC_OPTION_BIT);
+    return checkBit8(options, musicOptionBit);
 }
 
 void setSoundOnSaveState(uint8_t value)
 {
     if (value)
     {
-        options = setBit8(options, SOUND_OPTION_BIT);
+        options = setBit8(options, soundOptionBit);
     }
     else
     {
-        options = clearBit8(options, SOUND_OPTION_BIT);
+        options = clearBit8(options, soundOptionBit);
     }
     saveSaveState();
 }
 
 uint8_t isSoundOnSaveState()
 {
-    return checkBit8(options, SOUND_OPTION_BIT);
+    return checkBit8(options, soundOptionBit);
 }
 
 void unlockLevel(uint8_t mode, uint8_t diff, uint8_t level)

@@ -5,13 +5,13 @@
 #include "helperfuncs.h"
 #include "../res/selectortiles.h"
 
-constexpr uint8_t MAXCURSORFRAMECOUNT = (uint8_t)(10 * FRAMERATE / 60);
-constexpr uint8_t CURSORANIMCOUNT = 2; //blink on & off
-constexpr uint8_t NUMTILES = 16; //for the max 2 cursors shown at once (on help screens) 
+constexpr uint8_t maxCursorFrameCount = (uint8_t)(10 * frameRate / 60);
+constexpr uint8_t cursorAnimCount = 2; //blink on & off
+constexpr uint8_t cursorNumTiles = 16; //for the max 2 cursors shown at once (on help screens) 
 
 uint8_t cursorFrameCount, cursorFrame;
 uint8_t showCursor = 1;
-uint8_t spritePos[NUMTILES][2];
+uint8_t spritePos[cursorNumTiles][2];
 
 void move_sprite(uint8_t sprite, uint8_t x, uint8_t y)
 {
@@ -24,7 +24,7 @@ void drawCursors()
     if((showCursor == 0) || (cursorFrame & 1)) // 2nd or to add blink effect, it will skip drawing if bit 1 is set
         return;
     
-    for (uint8_t i=0; i<NUMTILES; i++)
+    for (uint8_t i=0; i<cursorNumTiles; i++)
     {
         if (spritePos[i][1] < arduboy.height())
         {
@@ -37,11 +37,11 @@ void drawCursors()
 uint8_t updateCursorFrame()
 {
     cursorFrameCount++;
-    if (cursorFrameCount >= MAXCURSORFRAMECOUNT)
+    if (cursorFrameCount >= maxCursorFrameCount)
     {        
         cursorFrame++;
         cursorFrameCount = 0;
-        if (cursorFrame >= CURSORANIMCOUNT)
+        if (cursorFrame >= cursorAnimCount)
         {
             cursorFrame = 0;
         }  

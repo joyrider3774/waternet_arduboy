@@ -9,7 +9,7 @@
 
 uint16_t frames = 0;
 float titlePosY = 8*8;
-constexpr uint8_t FRAMEDELAY = 16 * FRAMERATE / 15;    
+constexpr uint8_t FRAMEDELAY = 16 * frameRate / 15;    
 
 void initIntro()
 {
@@ -41,7 +41,7 @@ void intro()
             arduboy.drawCompressed(0, (uint16_t)titlePosY, titlescreenMap);
             if(titlePosY > 0)
             {
-                titlePosY -= (float)30/(float)FRAMERATE;
+                titlePosY -= (float)30/(float)frameRate;
             }
             else
             {

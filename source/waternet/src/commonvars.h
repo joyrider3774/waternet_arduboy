@@ -13,6 +13,8 @@ constexpr uint8_t  maxBoardBgHeight = 8U;
 
 constexpr uint8_t  maxBoardSize = maxBoardWidth * maxBoardHeight;
 
+constexpr uint8_t  tileSize = 8;
+
 constexpr uint8_t  gsGame = 0;
 constexpr uint8_t  gsTitle = 1;
 constexpr uint8_t  gsLevelSelect = 2;
@@ -85,7 +87,7 @@ constexpr uint8_t  arrowLeft = 123;
 constexpr uint8_t  arrowRight = 121;
 constexpr uint8_t  leftMenu = 118;
 
-constexpr uint8_t  FRAMERATE = 15;
+constexpr uint8_t  frameRate = 15;
 
 extern uint8_t startPos, menuPos, 
         maxLevel, selectedLevel, boardX, boardY, difficulty, 
