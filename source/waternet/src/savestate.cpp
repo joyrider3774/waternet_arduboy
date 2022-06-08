@@ -1,6 +1,8 @@
 #include <string.h>
-#include "commonvars.h"
 #include <EEPROM.h>
+#include <stdint.h>
+
+#include "commonvars.h"
 
 
 constexpr int EEPROM_START = 628;
@@ -127,7 +129,7 @@ void initSaveState()
         {
             for (uint8_t i=0; i<diffCount; i++)
             {
-                packLevelLock(j, i, 25U);
+                packLevelLock(j, i, 1U); //1st level unlocked
             }
         }
         options = 3; //bit 0 & 1 set = music & sound on

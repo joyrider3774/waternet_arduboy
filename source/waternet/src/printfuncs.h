@@ -1,7 +1,7 @@
 #ifndef PRINTFUNCS_H
 #define PRINTFUNCS_H
 
-#include "commonvars.h"
+#include <stdint.h>
 
 void printDebugCpuLoad();
 void printDebug(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg);

@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <Arduboy2.h>
 
 #include "helperfuncs.h"
 #include "commonvars.h"

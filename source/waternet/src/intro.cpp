@@ -1,10 +1,8 @@
- #include <stdint.h>
-#include <Arduboy2.h>
+#include <stdint.h>
 
 #include "helperfuncs.h"
 #include "commonvars.h"
 #include "printfuncs.h"
-#include "sound.h"
 
 #include "../res/titlescreenmap.h"
 #include "../res/blocktiles.h"

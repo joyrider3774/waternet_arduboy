@@ -1,6 +1,4 @@
 #include <stdint.h>
-#include <time.h>
-#include <Arduboy2.h>
 
 #include "../res/titlescreenmap.h"
 #include "commonvars.h"

@@ -1,6 +1,7 @@
 #include <Arduboy2.h>
 #include <Arduboy2Audio.h>
 #include <ArduboyTones.h>
+#include <stdint.h>
 
 #include "commonvars.h"
 

@@ -1,8 +1,9 @@
 #ifndef SAVESTATE_H
 #define SAVESTATE_H
 
-void initSaveState();
+#include <stdint.h>
 
+void initSaveState();
 uint8_t lastUnlockedLevel(uint8_t mode, uint8_t diff);
 uint8_t levelUnlocked(uint8_t mode, uint8_t diff, uint8_t level);
 uint8_t isMusicOnSaveState();

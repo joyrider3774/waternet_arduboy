@@ -1,10 +1,6 @@
-#include <Arduboy2.h>
-#include <EEPROM.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
-
 
 #include "src\commonvars.h"
 #include "src\intro.h"
@@ -41,7 +37,6 @@ void setup()
     setSoundOn(isSoundOnSaveState() && arduboy.audio.enabled());
  }
 
-//entrypoint
 void loop()
 {
     if (debugMode)

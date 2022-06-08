@@ -1,6 +1,4 @@
-
-#include <time.h>
-#include <Arduboy2.h>
+#include <stdint.h>
 
 #include "level.h"
 #include "commonvars.h"

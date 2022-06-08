@@ -3,6 +3,7 @@
 
 #include <Arduboy2.h>
 #include <ArduboyTones.h>
+#include <stdint.h>
 
 constexpr uint8_t maxBoardWidth = 10U;
 constexpr uint8_t  maxBoardHeight = 8U;
