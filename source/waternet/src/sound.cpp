@@ -9,7 +9,7 @@
 
 //I (joyrider3774) created the music in this tool : https://onlinesequencer.net
 
-uint8_t prev_music = 0, music_on = 0, sound_on = 0;
+uint8_t prev_music, music_on, sound_on;
 BeepPin2 beep;
 
 constexpr uint16_t pause1 = 250U;
@@ -348,6 +348,13 @@ void SelectMusic(uint8_t musicFile, uint8_t force)
     }
 }
 
+void playSound(uint16_t count)
+{
+    if(!sound_on)
+        return;
+    beep.tone(count, sfxSustain);
+}
+
 void initMusic()
 {
     music_on = isMusicOnSaveState();
@@ -356,55 +363,30 @@ void initMusic()
 
 void playGameMoveSound()
 {
-    if(!sound_on)
-    {
-        return;
-    }
-    beep.tone(beep.freq(750), sfxSustain);
+    playSound(beep.freq(750));
 }
 
 void playErrorSound()
 {
-    if(!sound_on)
-    {
-        return;
-    }
-    beep.tone(beep.freq(300), sfxSustain);
-
+   playSound(beep.freq(300));
 }
 
 void playMenuSelectSound()
 {
-    if(!sound_on)
-    {
-        return;
-    }
-    beep.tone(beep.freq(1250), sfxSustain);
+    playSound(beep.freq(1250));
 }
 
 void playMenuBackSound()
 {
-    if(!sound_on)
-    {
-        return;
-    }
-    beep.tone(beep.freq(1000), sfxSustain);
+   playSound(beep.freq(1000));
 }
 
 void playMenuAcknowlege()
 {
-    if(!sound_on)
-    {
-        return;
-    }
-    beep.tone(beep.freq(900), sfxSustain);
+    playSound(beep.freq(900));
 }
 
 void playGameAction()
 {
-    if(!sound_on)
-    {
-        return;
-    }
-    beep.tone(beep.freq(600), sfxSustain);
+    playSound(beep.freq(600));
 }
