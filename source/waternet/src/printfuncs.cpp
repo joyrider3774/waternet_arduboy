@@ -1,14 +1,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <Arduboy2.h>
+#include <stdint.h>
 
 #include "commonvars.h"
 #include "printfuncs.h"
 #include "helperfuncs.h"
 
-//print a number on levelselect or game screen (used to display levelnr & moves)
-//again based on asci codes and adjust to tiles in the tileset
+//print a number on levelselect or game screen
 void printNumber(uint8_t ax, uint8_t ay, uint16_t aNumber, uint8_t maxDigits)
 {
     char number[10];
@@ -18,9 +17,8 @@ void printNumber(uint8_t ax, uint8_t ay, uint16_t aNumber, uint8_t maxDigits)
     for (uint8_t c=0; c < maxDigits; c++)
     {
         if (number[c] == 0)
-        {
             break;
-        }
+
         set_bkg_tile_xy(ax + (maxDigits - digits) + c, ay, number[c] + 32);
     }
 }
@@ -68,6 +66,7 @@ void printDebugCpuLoad()
         {
             if (number[c] == 0)
                 break;
+
             set_bkg_tile_xy(c + (3 - len), 0, number[c] + 32);
         }
         
@@ -76,9 +75,9 @@ void printDebugCpuLoad()
     }
 }
 
+#define setTileAndContinue(ax,ay, tilenr) set_bkg_tile_xy(ax, ay, tilenr); continue;
 
 //print a message on the title screen on ax,ay, the tileset from titlescreen contains an alphabet
-//and we use the asci codes to adapt the value to the tilenr in the tileset
 void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
 {
     char fChar;
@@ -86,97 +85,84 @@ void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
     for (size_t c = 0; c < len; c++)
     {
         memccpy_P(&fChar, (PGM_P)amsg + c, 0, 1);
+        if(fChar == 0)
+            break;
+
         if (fChar == ' ')
         {
-            set_bkg_tile_xy(ax + c, ay, 61);
+            setTileAndContinue(ax + c, ay, 61);
         }
-        else
+
+        //A-Z
+        if ((fChar > 64) && (fChar < 91))
         {
-            //A-Z
-            if ((fChar > 64) && (fChar < 91))
-            {
-                set_bkg_tile_xy(ax + c, ay, fChar + 25);
-            }   
-            else
-            {
-                if (fChar == '[')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 70);
-                }  
-                else
-                if (fChar == ']')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 64);
-                }  
-                else
-                if (fChar == '<')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 73);
-                }  
-                else
-                if (fChar == '>')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 67);
-                }  
-                else
-                if (fChar == '+')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 63);
-                }  
-                else
-                if (fChar == '*')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 62);
-                }  
-                else
-                if (fChar == '|')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 69);
-                }  
-                else
-                if (fChar == '#')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 65);
-                }  
-                else
-                if (fChar == ':')
-                {
-                    set_bkg_tile_xy(ax + c, ay, 116);
-                }  
-                else
-                {
-                    if (fChar == 'a')
-                    {
-                        set_bkg_tile_xy(ax + c, ay, 119);
-                    }
-                    else
-                    {
-                        if (fChar == 'b')
-                        {
-                            set_bkg_tile_xy(ax + c, ay, 117);
-                        } 
-                        else
-                        {
-                            if(fChar == 0)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                //0-9
-                                if ((fChar > 46) && (fChar < 58))
-                                {
-                                    set_bkg_tile_xy(ax + c, ay, fChar + 32);
-                                }
-                            } 
-                        }
-                    }
-                }
-            }
-        }    
+            setTileAndContinue(ax + c, ay, fChar + 25);
+        }
+
+        //0-9
+        if ((fChar > 46) && (fChar < 58))
+        {
+            setTileAndContinue(ax + c, ay, fChar + 32);
+        }
+
+        if (fChar == '[')
+        {
+            setTileAndContinue(ax + c, ay, 70);
+        }
+  
+        if (fChar == ']')
+        {
+            setTileAndContinue(ax + c, ay, 64);
+        }
+  
+        if (fChar == '<')
+        {
+            setTileAndContinue(ax + c, ay, 73);
+        }
+    
+        if (fChar == '>')
+        {
+            setTileAndContinue(ax + c, ay, 67);
+        }
+
+        if (fChar == '+')
+        {
+            setTileAndContinue(ax + c, ay, 63);
+        }
+
+        if (fChar == '*')
+        {
+            setTileAndContinue(ax + c, ay, 62);
+        }
+     
+        if (fChar == '|')
+        {
+            setTileAndContinue(ax + c, ay, 69);
+        }
+        
+        if (fChar == '#')
+        {
+            setTileAndContinue(ax + c, ay, 65);
+        }
+        
+        if (fChar == ':')
+        {
+            setTileAndContinue(ax + c, ay, 116);
+        }
+      
+        if (fChar == 'a')
+        {
+            setTileAndContinue(ax + c, ay, 119);
+        }
+        
+        if (fChar == 'b')
+        {
+            setTileAndContinue(ax + c, ay, 117);
+        }
     }
 }
 
+//print a message on the CongratsScreen on ax,ay, the tileset from Congrats Screen contains an alphabet in another font
 void printCongratsScreen(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
 {
     char fChar;
@@ -184,20 +170,17 @@ void printCongratsScreen(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg
     for (size_t c = 0; c < len; c++)
     {
         memccpy_P(&fChar, (PGM_P)amsg + c, 0, 1);
+        if (fChar == 0)
+            break;
+
         if (fChar == ' ')
         {
-            set_bkg_tile_xy(ax + c, ay, 0);
+            setTileAndContinue(ax + c, ay, 26);
         }
-        else
+
+        if ((fChar > 64) && (fChar < 91))
         {
-            if (fChar != 0)
-            {
-                set_bkg_tile_xy(ax + c, ay, fChar);
-            }
-            else
-            {
-                break;
-            }
+            setTileAndContinue(ax + c, ay, fChar-65);
         }
     }
 }
