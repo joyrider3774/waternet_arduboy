@@ -189,7 +189,7 @@ uint8_t lastUnlockedLevel(uint8_t mode, uint8_t diff)
 
 void unlockLevel(uint8_t mode, uint8_t diff, uint8_t level)
 {
-    if (level > lastUnlockedLevel(mode, diff))
+    if (level + 1> lastUnlockedLevel(mode, diff))
     {
         packLevelLock(mode, diff, level + 1);
         saveSaveState();
