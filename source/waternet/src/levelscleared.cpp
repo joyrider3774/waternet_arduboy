@@ -13,7 +13,7 @@ void initLevelsCleared()
 {
     set_bkg_data(congratsScreenTiles);
     arduboy.clear();
-    set_bkg_tiles(0, 0, congratsMap);
+    arduboy.drawCompressed(0, 0, congratsMap);
     if(difficulty == diffVeryEasy)
     {
         printCongratsScreen(0, 3, F("VERY EASY LEVELS"));

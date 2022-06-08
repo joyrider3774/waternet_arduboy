@@ -38,7 +38,7 @@ void intro()
         }
         else
         {
-            set_bkg_tiles(0, (uint8_t)titlePosY, titlescreenMap);
+            arduboy.drawCompressed(0, (uint16_t)titlePosY, titlescreenMap);
             if(titlePosY > 0)
             {
                 titlePosY -= (float)30/(float)FRAMERATE;

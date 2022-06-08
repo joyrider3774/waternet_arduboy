@@ -11,7 +11,7 @@
 void drawTitleScreen()
 {
     arduboy.clear();
-    set_bkg_tiles(0, 0, titlescreenMap);
+    arduboy.drawCompressed(0, 0, titlescreenMap);
 
     if (titleStep == tsMainMenu)
     {
