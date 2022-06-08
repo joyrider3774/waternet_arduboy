@@ -7,17 +7,12 @@
 #include "sound.h"
 #include "savestate.h"
 
-
 //I (joyrider3774) created the music in this tool : https://onlinesequencer.net
-//and used this page to convert notes to frequencies for gameboy: http://www.devrs.com/gb/files/sndtab.html
-//music uses channel 2 only using simple notes
-//sound uses channel 1 only
 
 uint8_t prev_music = 0, music_on = 0, sound_on = 0;
 BeepPin2 beep;
 
-
-constexpr uint8_t PAUSE = 250U;
+constexpr uint8_t PAUSE1 = 250U;
 constexpr uint8_t PAUSE2 = 100U;
 constexpr uint8_t PAUSE3 = 233U;
 constexpr uint8_t PAUSE4 = 216U;
@@ -196,59 +191,59 @@ const uint16_t PROGMEM music_game[] ={
 
 //https://onlinesequencer.net/2484977
 const uint16_t PROGMEM music_intro[] = {
-    NOTE_C4,  PAUSE,
-    NOTE_C4,  PAUSE * 2,
-    NOTE_D4,  PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_REST, PAUSE * 8,
+    NOTE_C4,  PAUSE1,
+    NOTE_C4,  PAUSE1 * 2,
+    NOTE_D4,  PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_REST, PAUSE1 * 8,
     
-    NOTE_C4,  PAUSE,
-    NOTE_C4,  PAUSE * 2,
-    NOTE_D4,  PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_D4,  PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_CS4, PAUSE,
-    NOTE_REST, PAUSE * 4,
+    NOTE_C4,  PAUSE1,
+    NOTE_C4,  PAUSE1 * 2,
+    NOTE_D4,  PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_D4,  PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_CS4, PAUSE1,
+    NOTE_REST, PAUSE1 * 4,
 
-    NOTE_C4,  PAUSE,
-    NOTE_C4,  PAUSE * 2,
-    NOTE_D4,  PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_REST, PAUSE * 8,
+    NOTE_C4,  PAUSE1,
+    NOTE_C4,  PAUSE1 * 2,
+    NOTE_D4,  PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_REST, PAUSE1 * 8,
     
-    NOTE_C4,  PAUSE,
-    NOTE_C4,  PAUSE * 2,
-    NOTE_D4,  PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_D4,  PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_CS4, PAUSE,
-    NOTE_REST, PAUSE * 4,
+    NOTE_C4,  PAUSE1,
+    NOTE_C4,  PAUSE1 * 2,
+    NOTE_D4,  PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_D4,  PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_CS4, PAUSE1,
+    NOTE_REST, PAUSE1 * 4,
 
-    NOTE_D4,  PAUSE,
-    NOTE_D4,  PAUSE, 
-    NOTE_CS4, PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_CS4, PAUSE,
-    NOTE_D4,  PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_CS4, PAUSE,
-    NOTE_DS4, PAUSE,
-    NOTE_D4,  PAUSE,
-    NOTE_D4,  PAUSE,
-    NOTE_D4,  PAUSE,
-    NOTE_E4, PAUSE,
-    NOTE_C4,  PAUSE,
-    NOTE_CS4, PAUSE,
-    NOTE_E4,  PAUSE,
-    NOTE_D4,  PAUSE * 3,
-    NOTE_REST, PAUSE * 4,
+    NOTE_D4,  PAUSE1,
+    NOTE_D4,  PAUSE1, 
+    NOTE_CS4, PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_CS4, PAUSE1,
+    NOTE_D4,  PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_CS4, PAUSE1,
+    NOTE_DS4, PAUSE1,
+    NOTE_D4,  PAUSE1,
+    NOTE_D4,  PAUSE1,
+    NOTE_D4,  PAUSE1,
+    NOTE_E4, PAUSE1,
+    NOTE_C4,  PAUSE1,
+    NOTE_CS4, PAUSE1,
+    NOTE_E4,  PAUSE1,
+    NOTE_D4,  PAUSE1 * 3,
+    NOTE_REST, PAUSE1 * 4,
     TONES_REPEAT 
 };
 
