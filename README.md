@@ -61,7 +61,7 @@ The game uses EEPROM for saving it's progress, you can find and change these val
 
 ## Photo's of the game running on real hardware
 
-| <img src="images/hardware1.png"> | <img src="images/hardware2.png"> | <img src="images/hardware3.png"> | <img src="images/hardware4.png"> | <img src="images/hardware5.png"> |
+| <img src="images/hardware1.jpg"> | <img src="images/hardware2.jpg"> | <img src="images/hardware3.jpg"> | <img src="images/hardware4.jpg"> | <img src="images/hardware5.jpg"> |
 | ------ | ------ | ------ | ------ | ------ |
 
 ## Credits
