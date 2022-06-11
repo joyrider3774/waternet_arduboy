@@ -61,6 +61,9 @@ The game uses EEPROM for saving it's progress, you can find and change these val
 
 ## Photo's of the game running on real hardware
 
+| <img src="images/hardware1.png"> | <img src="images/hardware2.png"> | <img src="images/hardware3.png"> | <img src="images/hardware4.png"> | <img src="images/hardware5.png"> |
+| ------ | ------ | ------ | ------ | ------ |
+
 ## Credits
 Waternet game concept is based on the Net and Netslide game from the [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/),
 it's my own implementation of these 2 game concepts mixed into one game
