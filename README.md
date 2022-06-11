@@ -1,4 +1,4 @@
-# Waternet Multiplatform Retro Game
+# Waternet (arduboy) Multiplatform Retro Game
 This is the Arduboy version of my Waternet games which is a multiplatform puzzle game initially written for old consoles and handhelds like Game Boy (Color), Game Gear, Master System, Analogue Pocket and Mega Duck using the gbdk sdk. This a port with many changes to make it work for arduboy 
 
 ## Buy me a "koffie" if you feel like supporting 
