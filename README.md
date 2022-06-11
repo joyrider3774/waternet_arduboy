@@ -7,10 +7,10 @@ I do everything in my spare time for free, if you feel something aided you and y
 <a href='https://ko-fi.com/Q5Q3BKI5S' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Controls
-| Button    | Action                                                                   |
-|-----------|--------------------------------------------------------------------------|
-| A / Start | Confirm in menu and level selector, rotate or slide action while playing |
-| B         | Back in menu, level selector and game                                    |
+| Button | Action                                                                   |
+|--------|--------------------------------------------------------------------------|
+| A      | Confirm in menu and level selector, rotate or slide action while playing |
+| B      | Back in menu, level selector and game                                    |
 
 ## Game Modes
 The aim of the game, in any game mode is always to connect all pipes so that water can flow through them from the water point source. How you can accomplish this depends on the  game mode. The game has a help section in the main menu where you can always check up on the rules of each game mode.
