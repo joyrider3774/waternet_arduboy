@@ -28,7 +28,7 @@ You need to connect all the pipes so water flows through them, by pressing the A
 You need to connect all the pipes so water flows through them, by pressing the A on the arrows of a row or column. The row or column will move all pipes in the direction the arrow is pointing at.
 
 ### Roslid Mode
-| <img src="images/slide-legend.png"> | <img src="images/slide-finish.png"> | <img src="images/rotate.png"> | <img src="images/slide.png"> |
+| <img src="images/roslid-legend.png"> | <img src="images/roslid-finish.png"> | <img src="images/roslid-rotate.png"> | <img src="images/roslid-slide.png"> |
 | ------ | ------ | ------ | ------ |
 
 You need to connect all the pipes so water flows through them, by pressing the A on the arrows of a row or column. The row or column will move all pipes in the direction the arrow is pointing at. You can also press the A on a pipe, to rotate the single pipe. This is a combination Rotate and Slide mode.
