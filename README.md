@@ -7,6 +7,7 @@ I do everything in my spare time for free, if you feel something aided you and y
 <a href='https://ko-fi.com/Q5Q3BKI5S' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Controls
+
 | Button | Action                                                                   |
 |--------|--------------------------------------------------------------------------|
 | A      | Confirm in menu and level selector, rotate or slide action while playing |
@@ -16,18 +17,21 @@ I do everything in my spare time for free, if you feel something aided you and y
 The aim of the game, in any game mode is always to connect all pipes so that water can flow through them from the water point source. How you can accomplish this depends on the  game mode. The game has a help section in the main menu where you can always check up on the rules of each game mode.
 
 ### Rotate Mode
+
 | <img src="images/rotate-legend.png"> | <img src="images/rotate-finish.png"> | <img src="images/rotate.png"> |
 | ------ | ------ | ------ |
 
 You need to connect all the pipes so water flows through them, by pressing the A button on a pipe, to rotate the single pipe.
 
 ### Slide Mode
+
 | <img src="images/slide-legend.png"> | <img src="images/slide-finish.png"> | <img src="images/slide.png"> |
 | ------ | ------ | ------ |
 
 You need to connect all the pipes so water flows through them, by pressing the A on the arrows of a row or column. The row or column will move all pipes in the direction the arrow is pointing at.
 
 ### Roslid Mode
+
 | <img src="images/roslid-legend.png"> | <img src="images/roslid-finish.png"> | <img src="images/roslid-rotate.png"> | <img src="images/roslid-slide.png"> |
 | ------ | ------ | ------ | ------ |
 
