@@ -75,7 +75,7 @@ void printDebugCpuLoad()
     }
 }
 
-#define setTileAndContinue(ax,ay, tilenr) set_bkg_tile_xy(ax, ay, tilenr); continue;
+#define setTileAndContinue(ax, ay, tilenr) set_bkg_tile_xy(ax, ay, tilenr); continue;
 
 //print a message on the title screen on ax,ay, the tileset from titlescreen contains an alphabet
 void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
@@ -178,7 +178,7 @@ void printCongratsScreen(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg
             setTileAndContinue(ax + c, ay, 26);
         }
 
-        if ((fChar >= 'A') && (fChar < 'Z'))
+        if ((fChar >= 'A') && (fChar <= 'Z'))
         {
             setTileAndContinue(ax + c, ay, fChar-65);
         }
