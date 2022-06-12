@@ -13,7 +13,7 @@ constexpr uint8_t frameDelay = 16 * frameRate / 15;
 
 void initIntro()
 {
-    set_bkg_data(blockTiles);
+    setBlockTilesAsBackground();
     titlePosY = arduboy.height();
     frames = 0;   
 }
