@@ -255,9 +255,7 @@ void setMusicOn(uint8_t value)
         arduboy.audio.on();
         arduboy.audio.saveOnOff();
         if (prev_music != 0)
-        {
             SelectMusic(prev_music, 1);
-        }
         else
         {
             //this can only happen on title screen
@@ -266,9 +264,7 @@ void setMusicOn(uint8_t value)
             //before and you can only enable it in the main - options - menu
             //where title music plays
             if (gameState == gsTitle)
-            {
                 SelectMusic(musTitle, 1);
-            }
         }
     }
     else
@@ -336,13 +332,13 @@ void SelectMusic(uint8_t musicFile, uint8_t force)
                 arduboySound.tones(music_intro);
                 break;
             case musLevelClear:
-                arduboySound.tones(music_won);               
+                arduboySound.tones(music_won);
                 break;
             case musAllLevelsClear:
                 arduboySound.tones(music_levelsCleared);
                 break;
             case musGame:
-                arduboySound.tones(music_game);              
+                arduboySound.tones(music_game);
                 break;
         }
     }

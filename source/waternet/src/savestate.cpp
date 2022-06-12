@@ -64,13 +64,9 @@ void packLevelLock(uint8_t mode, uint8_t diff, uint8_t level)
     for (uint8_t i = 0; i<5; i++)
     {
         if (checkBit8(level, i))
-        {
             levelLocksPacked[pack] = setBit32(levelLocksPacked[pack], bit + i);
-        }
         else
-        {
             levelLocksPacked[pack] = clearBit32(levelLocksPacked[pack], bit + i);
-        }
     }
 }
 
@@ -83,9 +79,7 @@ uint8_t unPackLevelLock(uint8_t mode, uint8_t diff)
     for (uint8_t i = 0; i<5; i++)
     {
         if (checkBit32(levelLocksPacked[pack], bit+i))
-        {
             result = setBit8(result, i);
-        }
     }
     return result;
 }
@@ -99,15 +93,11 @@ uint8_t validateSaveState()
         {
             levelsUnlocked = unPackLevelLock(j, i);
             if ((levelsUnlocked == 0) || (levelsUnlocked > levelCount))
-            {
                 return 0;
-            }
         }
     }
     if (options > 3) //bit 0 & 1 set = 3
-    {
         return 0;
-    }
     return 1;
 }
 
@@ -125,12 +115,8 @@ void initSaveState()
         levelLocksPacked[1] = 0UL;
         levelLocksPacked[2] = 0UL;
         for (uint8_t j=0; j<gmCount; j++)
-        {
             for (uint8_t i=0; i<diffCount; i++)
-            {
                 packLevelLock(j, i, 1U); //1st level unlocked
-            }
-        }
         options = 3; //bit 0 & 1 set = music & sound on
     }
 }
@@ -162,13 +148,9 @@ uint8_t isMusicOnSaveState()
 void setSoundOnSaveState(uint8_t value)
 {
     if (value)
-    {
         options = setBit8(options, soundOptionBit);
-    }
     else
-    {
         options = clearBit8(options, soundOptionBit);
-    }
     saveSaveState();
 }
 

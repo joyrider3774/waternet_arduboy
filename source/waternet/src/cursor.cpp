@@ -24,12 +24,8 @@ void drawCursors()
         return;
     
     for (uint8_t i=0; i<cursorNumTiles; i++)
-    {
         if (spritePos[i][1] < arduboy.height())
-        {
             arduboy.drawBitmap(spritePos[i][0], spritePos[i][1], selectorTiles + 2 + ((i % 8) * 8), 8, 8);
-        }
-    }
 }
 
 //returns 1 if cursor has changed / needs redraw
@@ -41,9 +37,7 @@ uint8_t updateCursorFrame()
         cursorFrame++;
         cursorFrameCount = 0;
         if (cursorFrame >= cursorAnimCount)
-        {
             cursorFrame = 0;
-        }  
         return 1; 
     }
     return 0;
@@ -68,10 +62,9 @@ void showCursors()
 
 void setCursorPos(uint8_t cursorNr, uint8_t xPos, uint8_t yPos)
 {
-    if (cursorNr > 2)
-    {
+    if (cursorNr > 1)
         return;
-    }
+
     move_sprite((cursorNr<<3) + 0, ((xPos) << 3),  ((yPos - 1) << 3));
     move_sprite((cursorNr<<3) + 1,  ((xPos + 1) << 3),  ((yPos) << 3));
     move_sprite((cursorNr<<3) + 2,  ((xPos) << 3),  ((yPos + 1) << 3));

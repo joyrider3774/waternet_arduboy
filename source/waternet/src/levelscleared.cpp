@@ -14,25 +14,27 @@ void initLevelsCleared()
     set_bkg_data(congratsScreenTiles);
     arduboy.clear();
     arduboy.drawCompressed(0, 0, congratsMap);
-    if(difficulty == diffVeryEasy)
+    switch (difficulty)
     {
-        printCongratsScreen(0, 3, F("VERY EASY LEVELS"));
-    }
-    if(difficulty == diffEasy)
-    {
-        printCongratsScreen(3, 3, F("EASY LEVELS"));
-    }
-    if(difficulty == diffNormal)
-    {
-        printCongratsScreen(2, 3, F("NORMAL LEVELS"));
-    }
-    if(difficulty == diffHard)
-    {
-        printCongratsScreen(3, 3, F("HARD LEVELS"));
-    }
-    if(difficulty == diffVeryHard)
-    {
-        printCongratsScreen(0, 3, F("VERY HARD LEVELS"));
+        case diffVeryEasy:
+            printCongratsScreen(0, 3, F("VERY EASY LEVELS"));
+            break;
+        
+        case diffEasy:
+            printCongratsScreen(3, 3, F("EASY LEVELS"));
+            break;
+    
+        case diffNormal:
+            printCongratsScreen(2, 3, F("NORMAL LEVELS"));
+            break;
+
+        case diffHard:
+            printCongratsScreen(3, 3, F("HARD LEVELS"));
+            break;
+    
+        case diffVeryHard:
+            printCongratsScreen(0, 3, F("VERY HARD LEVELS"));
+            break;
     }
     SelectMusic(musAllLevelsClear);
 }

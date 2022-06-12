@@ -28,13 +28,19 @@ void helpLegend(uint8_t nextState)
     if (needRedraw)
     {
         arduboy.clear();
-        if(gameState == gsHelpSlide)
-            printMessage(2, 0, F("HELP: SLIDE"));
-        if(gameState == gsHelpRotate)
-            printMessage(2, 0, F("HELP: ROTATE"));
-        if(gameState == gsHelpRotateSlide)
-            printMessage(2, 0, F("HELP: ROSLID"));
-                
+        switch(gameState)
+        {
+            case gsHelpSlide:
+                printMessage(2, 0, F("HELP: SLIDE"));
+                break;
+            case gsHelpRotate:
+                printMessage(2, 0, F("HELP: ROTATE"));
+                break;
+            case gsHelpRotateSlide:
+                printMessage(2, 0, F("HELP: ROSLID"));
+                break;
+        }
+        
         set_bkg_tile_xy(0, 1, 33);
         printMessage(1, 1, F(":WATER SOURCE"));
         set_bkg_tile_xy(0, 2, 11);
@@ -89,13 +95,18 @@ void helpFinishLevel(uint8_t nextState)
     if(needRedraw)
     {
         arduboy.clear();
-        if(gameState == gsHelpSlide2)
-            printMessage(2, 0, F("HELP: SLIDE"));
-        if(gameState == gsHelpRotate2)
-            printMessage(2, 0, F("HELP: ROTATE"));
-        if(gameState == gsHelpRotateSlide2)
-            printMessage(2, 0, F("HELP: ROSLID"));
-        
+        switch(gameState)
+        {
+            case gsHelpSlide2:
+                printMessage(2, 0, F("HELP: SLIDE"));
+                break;
+            case gsHelpRotate2:
+                printMessage(2, 0, F("HELP: ROTATE"));
+                break;
+            case gsHelpRotateSlide2:
+                printMessage(2, 0, F("HELP: ROSLID"));
+                break;
+        }
         printMessage(0, 2, F("LEVEL FINISH:"));
         
         if((gameState == gsHelpSlide2) ||
@@ -186,30 +197,30 @@ void helpDoSlideRotate(uint8_t nextState)
     if(needRedraw)
     {
         arduboy.clear();
-    
-        if(gameState == gsHelpSlide3)
-            printMessage(2, 0, F("HELP: SLIDE"));
 
-        if(gameState == gsHelpRotate3)
-            printMessage(2, 0, F("HELP: ROTATE"));
-
-        if((gameState == gsHelpRotateSlide3) || 
-        (gameState == gsHelpRotateSlide4))
-            printMessage(2, 0, F("HELP: ROSLID"));
+        switch(gameState)
+        {
+            case gsHelpSlide3:
+                printMessage(2, 0, F("HELP: SLIDE"));
+                break;
+            case gsHelpRotate3:
+                printMessage(2, 0, F("HELP: ROTATE"));
+                break;
+            case gsHelpRotateSlide3:
+            case gsHelpRotateSlide4:
+                printMessage(2, 0, F("HELP: ROSLID"));
+                break;
+        }
 
         if((gameState == gsHelpRotateSlide3) || 
             (gameState == gsHelpRotate3))
-        {
             printMessage(5, 2, F("ROTATE"));
-        }
         else
-        {
             printMessage(6, 2, F("SLIDE"));
-        }
 
         // 'A' + '=>'
-        set_bkg_tile_xy(6,5, 119);
-        set_bkg_tile_xy(9,5, 118);
+        set_bkg_tile_xy(6, 5, 119);
+        set_bkg_tile_xy(9, 5, 118);
 
         if((gameState == gsHelpSlide3) || 
         (gameState == gsHelpRotateSlide3) ||

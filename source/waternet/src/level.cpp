@@ -9,9 +9,7 @@ void moveBlockDown(uint8_t aTile)
 {
     uint8_t tmp = level[aTile + boardSize - boardWidth]; 
     for (uint8_t i= boardSize - boardWidth; i != 0 ; i -= boardWidth)
-    {
         level[aTile + i] = level[aTile + i -boardWidth];
-    }
     level[aTile] = tmp;
 }
 
@@ -19,9 +17,7 @@ void moveBlockUp(uint8_t aTile)
 {
     uint8_t tmp = level[aTile - boardSize + boardWidth]; 
     for (uint8_t i= boardSize - boardWidth; i != 0; i -= boardWidth)
-    {
         level[aTile - i] = level[aTile - i + boardWidth];
-    }
     level[aTile] = tmp;
 }
 
@@ -123,27 +119,20 @@ void rotateBlock(uint8_t aTile)
 void shuffleSlide(uint8_t aTile)
 {
     uint8_t rnd = random(4);
-    if (rnd == 0)
+    switch (rnd)
     {
-        moveBlockUp((aTile % boardWidth) + boardSize - boardWidth);
-    }
-    else
-    {
-        if (rnd == 1)
-        {
+        case 0:
+            moveBlockUp((aTile % boardWidth) + boardSize - boardWidth);
+            break;
+        case 1:
             moveBlockDown((aTile % boardWidth));
-        }
-        else
-        {
-            if(rnd == 2)
-            {
-                moveBlockLeft(boardWidth - 1 + aTile -(aTile % boardWidth));
-            }
-            else
-            {
-                moveBlockRight(aTile - (aTile % boardWidth));
-            }
-        }
+            break;
+        case 2:
+            moveBlockLeft(boardWidth - 1 + aTile -(aTile % boardWidth));
+            break;
+        case 3:
+            moveBlockRight(aTile - (aTile % boardWidth));
+            break;
     }
 }
 
@@ -151,9 +140,7 @@ void shuffleRotate(uint8_t aTile)
 {
     uint8_t rnd = random(4);
     for (uint8_t i = 0; i < rnd; i++)
-    {
         rotateBlock(aTile);
-    }
 }
 
 void shuffleLevel()
@@ -162,44 +149,37 @@ void shuffleLevel()
     uint8_t j = 0;
     while(j < boardSize)
     {
-        if(gameMode == gmRotate)
+        switch(gameMode)
         {
-            shuffleRotate(j);
-            j++;
-        }
-        else
-        {
-            if(gameMode == gmSlide)
-            {
+            case gmRotate:
+                shuffleRotate(j);
+                j++;
+                break;
+            case gmSlide:
                 shuffleSlide(j);
                 //for speed up it should be fine as all slide levels are uneven in width / height (except random)
                 j+=2;
-            }
-            else
-            {
-                if(gameMode == gmRotateSlide)
+                break;
+            case gmRotateSlide:
+                rnd = random(2);
+                if(rnd == 0)
                 {
-                    rnd = random(2);
-                    if(rnd == 0)
-                    {
-                        shuffleSlide(j);
-                        //for speed up
-                        j+=2;
-                    }
-                    else
-                    {
-                        shuffleRotate(j);
-                        j++;
-                    }
+                    shuffleSlide(j);
+                    //for speed up
+                    j+=2;
                 }
-            }
+                else
+                {
+                    shuffleRotate(j);
+                    j++;
+                }
+                break;
         }
     }
 }
 
 void handleConnectPoint(uint8_t currentPoint, uint8_t* cellStack, uint8_t* cc)
 {
-
     uint8_t lookUpX = currentPoint % boardWidth;
     uint8_t lookUpY = currentPoint / boardWidth;
     
@@ -327,17 +307,10 @@ void updateConnected()
 
     //add start pos special tile
     if (level[startPos] > 15)
-    {
-        level[startPos] += 16;
-    }
+       level[startPos] += 16;
     else 
-    {
         if (level[startPos] < 16)
-        {
             level[startPos] += 32;
-        }
-    }
-
 }
 
 void generateLevel()
@@ -367,30 +340,22 @@ void generateLevel()
         tmp  = currentPoint+1; 
         //tile has neighbour to the right which we did not handle yet
         if ((level[tmp] == 0xfu) && ( lookUpX + 1 < boardWidth))
-        {
             neighbours[neighboursFound++] = tmp;
-        }
     
         tmp = currentPoint-1; 
         //tile has neighbour to the left which we did not handle yet
         if ((level[tmp] == 0xfu) && (lookUpX > 0))
-        {
             neighbours[neighboursFound++] = tmp;
-        }
 
         tmp = currentPoint - boardWidth; 
         //tile has neighbour the north which we did not handle yet
         if ((level[tmp] == 0xfu) && (lookUpY > 0))
-        {
             neighbours[neighboursFound++] = tmp;
-        }
 
         tmp = currentPoint + boardWidth; 
         //tile has neighbour the south which we did not handle yet
         if ((level[tmp] == 0xfu) && (lookUpY + 1 < boardHeight))
-        {
             neighbours[neighboursFound++] = tmp;
-        }
 
         switch (neighboursFound)
         {
@@ -460,12 +425,9 @@ void generateLevel()
 uint8_t isLevelDone()
 {
     for (uint8_t i=0; i != boardSize; i++)
-    {
         if(level[i] < 16)
-        {
             return 0;
-        }
-    }
+
     return 1;
 }
 
@@ -474,15 +436,12 @@ void initLevel(unsigned long aRandomSeed)
     levelDone = 0;
     moves = 0;
     if(difficulty != diffRandom)
-    { 
         //use level number + fixed value based on difficulty as seed for the random function
         //this makes sure every level from a difficulty will remain the same
         randomSeed(selectedLevel + (difficulty * 500) + (gameMode * 50));
-    }
     else
-    {
         randomSeed(aRandomSeed); 
-    }
+
     maxLevel = levelCount;
     //set boardsize and max level based on difficulty
     switch (difficulty)

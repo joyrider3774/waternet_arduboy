@@ -30,26 +30,20 @@ void drawGame()
         printNumber(maxBoardBgWidth + 1, 3, moves, 5); 
         
         //A:XXXXXX (XXXXXX="ROTATE" or XXXXXX="SLIDE " or XXXXXX="ROSLID")
-        if(gameMode == gmRotate)
+        switch (gameMode)
         {
-            printMessage(maxBoardBgWidth, 4, F("a:"));
-            printMessage(maxBoardBgWidth, 5, F("ROTATE"));
-        }
-        else
-        {
-            if(gameMode == gmSlide)
-            {
+            case gmRotate:
+                printMessage(maxBoardBgWidth, 4, F("a:"));
+                printMessage(maxBoardBgWidth, 5, F("ROTATE"));
+                break;
+            case gmSlide:
                 printMessage(maxBoardBgWidth, 4, F("a:"));
                 printMessage(maxBoardBgWidth, 5, F("SLIDE"));
-            }
-            else
-            {
-                if(gameMode == gmRotateSlide)
-                {
-                    printMessage(maxBoardBgWidth, 4, F("a:"));
-                    printMessage(maxBoardBgWidth, 5, F("ROSLID"));
-                }
-            }
+                break;
+            case gmRotateSlide:
+                printMessage(maxBoardBgWidth, 4, F("a:"));
+                printMessage(maxBoardBgWidth, 5, F("ROSLID"));
+                break;
         }
 
         //B:BACK

@@ -28,21 +28,13 @@ void drawLevelSelect()
     //Locked & Unlocked keywoard
     uint8_t tmpUnlocked = levelUnlocked(gameMode, difficulty, selectedLevel -1);
     if(!tmpUnlocked)
-    {
         printMessage(maxBoardBgWidth , 2 , F("LOCKED"));
-    }
     else
-    {
-        if(tmpUnlocked)
-        {
-            printMessage(maxBoardBgWidth , 2 , F("OPEN"));
-        }
-    }
+        printMessage(maxBoardBgWidth , 2 , F("OPEN"));
     
     //Draw arrows for vertical / horizontal movement
     if(gameMode != gmRotate)
     {
-
         for (uint8_t x = 0; x != boardWidth; x++)
         {
             set_bkg_tile_xy(boardX + x , boardY -1 , arrowDown);

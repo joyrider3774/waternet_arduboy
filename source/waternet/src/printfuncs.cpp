@@ -94,13 +94,13 @@ void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
         }
 
         //A-Z
-        if ((fChar > 64) && (fChar < 91))
+        if ((fChar >= 'A') && (fChar <= 'Z'))
         {
             setTileAndContinue(ax + c, ay, fChar + 25);
         }
 
         //0-9
-        if ((fChar > 46) && (fChar < 58))
+        if ((fChar >= '0') && (fChar <= '9'))
         {
             setTileAndContinue(ax + c, ay, fChar + 32);
         }
@@ -178,7 +178,7 @@ void printCongratsScreen(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg
             setTileAndContinue(ax + c, ay, 26);
         }
 
-        if ((fChar > 64) && (fChar < 91))
+        if ((fChar >= 'A') && (fChar < 'Z'))
         {
             setTileAndContinue(ax + c, ay, fChar-65);
         }
