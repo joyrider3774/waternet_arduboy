@@ -1,0 +1,50 @@
+name: Release A Version
+
+on:
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      #create draft release
+      - name: release 
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: true
+          prerelease: false
+          release_name: Waternet Arduboy vX.X
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      #download artifact from last succesfull build
+      - name: Download Artifacts
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build.yaml
+          workflow_conclusion: success
+          path: artifacts
+      
+      #rezip them
+      - name: Rezip Artifacts
+        working-directory: artifacts
+        run: |
+          7z a "Waternet Arduboy.zip" "./"
+      
+      #add zip to create release from release step (with id create_release)
+      - name: Upload release artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artificats/Waternet Arduboy.zip
+          asset_name: Waternet Arduboy.zip
+          asset_content_type: application/zip
