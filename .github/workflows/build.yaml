@@ -55,7 +55,7 @@ jobs:
           arduino-cli core install ${{ matrix.arduino-platform }}
       
       # install arduboy libraries used 
-      - name: Install Aditional libraries
+      - name: Install Additional libraries
         run: |
           arduino-cli lib update-index
           arduino-cli lib install "Arduboy2"
@@ -64,7 +64,7 @@ jobs:
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} source\waternet\waternet.ino .
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} source\waternet\waternet.ino --build-path .
     
       #prepare artificat folder 
       - name: prepare artifact
