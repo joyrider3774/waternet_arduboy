@@ -13,17 +13,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      #create draft release
-      - name: release 
-        uses: actions/create-release@v1
-        id: create_release
-        with:
-          draft: true
-          prerelease: false
-          release_name: Waternet Arduboy vX.X
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
       #download artifact from last succesfull build
       - name: Download Artifacts
         uses: dawidd6/action-download-artifact@v2
@@ -38,13 +27,11 @@ jobs:
         run: |
           7z a "Waternet Arduboy.zip" "./"
       
-      #add zip to create release from release step (with id create_release)
-      - name: Upload release artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      #make a draf release
+      - name: Make Draft Release
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artificats/Waternet Arduboy.zip
-          asset_name: Waternet Arduboy.zip
-          asset_content_type: application/zip
+          name: Waternet vx.x
+          draft: true
+          files: |
+            artifacts/Waternet Arduboy.zip
