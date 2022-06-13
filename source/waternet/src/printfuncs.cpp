@@ -7,18 +7,59 @@
 #include "printfuncs.h"
 #include "helperfuncs.h"
 
-//print a number on levelselect or game screen
-void printNumber(uint8_t ax, uint8_t ay, uint16_t aNumber, uint8_t maxDigits)
+// function provided by @Pharap
+// If the array is not big enough,
+// this will cause an error message at compile time.
+template<size_t size>
+size_t formatInteger(char (&array)[size], uint16_t integer )
 {
-    char number[10];
-    itoa(aNumber, number, 10);
-    uint8_t digits = strlen(number);
-    for (uint8_t c=0; c < maxDigits; c++)
-    {
-        if (number[c] == '\0')
-            break;
+    constexpr size_t maxDigits = 10; 
+    constexpr size_t maxCharacters = (maxDigits + 1);
 
-        set_bkg_tile_xy(ax + (maxDigits - digits) + c, ay, number[c] + 32);
+    // Check the array size at compile time
+    static_assert(size >= maxCharacters, "array is too small");
+
+    constexpr size_t lastIndex = (maxCharacters - 1);
+
+    array[lastIndex] = '\0';
+
+    if(integer == 0)
+    {
+        array[lastIndex - 1] = '0';
+        return 1;
+    }
+
+    size_t digits = 0;
+
+    do
+    {
+        uint8_t digit = integer % 10;
+        integer /= 10;
+
+        ++digits;
+
+        array[lastIndex - digits] = ('0' + digit);
+    }
+    while(integer > 0);
+
+    return digits;
+}
+
+//print a number on levelselect or game screen
+void printNumber(uint8_t ax, uint8_t ay, uint16_t aNumber, size_t maxDigits)
+{
+    constexpr size_t buffSize = 10; 
+    char number[buffSize + 1];
+    size_t digits = formatInteger(number, aNumber);
+    size_t maxFor = digits;
+    if (digits > maxDigits)
+        maxFor = maxDigits;
+    for (size_t c=0; c < maxFor; c++)
+    {
+        if (number[buffSize - digits + c] == '\0')
+            return;
+        
+        set_bkg_tile_xy(ax + (maxDigits-digits) + c, ay, number[buffSize - digits + c] + 32);
     }
 }
 
