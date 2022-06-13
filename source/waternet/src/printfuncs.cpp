@@ -121,28 +121,18 @@ void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
     // based on input from @Pharap
     PGM_P p = reinterpret_cast<PGM_P>(amsg);
     size_t index = 0;
-    uint8_t goOn = 1;
 
-    while (goOn)
+    while (1)
     {
         char fChar = pgm_read_byte(p++);
 
         switch (fChar)
         { 
             case '\0':
-                goOn = 0;
-                break;
+                return;
 
             case ' ':
                 set_bkg_tile_xy(ax + index, ay, 61U);
-                break;
-
-            case 'A' ... 'Z':
-                set_bkg_tile_xy(ax + index, ay, fChar + 25U);
-                break;
-
-            case '0' ... '9':
-                set_bkg_tile_xy(ax + index, ay, fChar + 32U);
                 break;
 
             case '[':
@@ -188,6 +178,14 @@ void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
             case 'b':
                 set_bkg_tile_xy(ax + index, ay, 117U);
                 break;
+            
+            default:
+                if ((fChar >= 'A') &&  (fChar <= 'Z'))
+                    set_bkg_tile_xy(ax + index, ay, fChar + 25U);
+                
+                if ((fChar >= '0') && (fChar <= '9'))
+                    set_bkg_tile_xy(ax + index, ay, fChar + 32U);
+                break;
         }
         index++;
     }
@@ -199,24 +197,23 @@ void printCongratsScreen(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg
     // based on input form @Pharap
     PGM_P p = reinterpret_cast<PGM_P>(amsg);
     size_t index = 0;
-    uint8_t goOn = 1;
 
-    while (goOn)
+    while (1)
     {
         char fChar = pgm_read_byte(p++);
 
         switch (fChar) 
         {
             case '\0':
-                goOn = 0;
-                break;
+               return;
 
             case ' ':
                 set_bkg_tile_xy(ax + index, ay, 26);
                 break;
 
-            case 'A' ... 'Z':
-                set_bkg_tile_xy(ax + index, ay, fChar - 'A');
+            default:
+                if ((fChar >= 'A') &&  (fChar <= 'Z'))
+                    set_bkg_tile_xy(ax + index, ay, fChar - 'A');
                 break;
         }
         index++;
