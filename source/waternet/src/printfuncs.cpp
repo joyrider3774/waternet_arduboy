@@ -125,69 +125,66 @@ void printMessage(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg)
     while (1)
     {
         char fChar = pgm_read_byte(p++);
-
+        uint8_t tile = 61U;
         switch (fChar)
         { 
             case '\0':
                 return;
 
-            case ' ':
-                set_bkg_tile_xy(ax + index, ay, 61U);
-                break;
-
             case '[':
-                set_bkg_tile_xy(ax + index, ay, 70U);
+                tile = 70U;
                 break;
 
             case ']':
-                set_bkg_tile_xy(ax + index, ay, 64U);
+                tile = 64U;
                 break;
 
             case '<':
-                set_bkg_tile_xy(ax + index, ay, 73U);
+                tile = 73U;
                 break;
 
             case '>':
-                set_bkg_tile_xy(ax + index, ay, 67U);
+                tile = 67U;
                 break;
 
             case '+':
-                set_bkg_tile_xy(ax + index, ay, 63U);
+                tile = 63U;
                 break;
 
             case '*':
-                set_bkg_tile_xy(ax + index, ay, 62U);
+                tile = 62U;
                 break;
 
             case '|':
-                set_bkg_tile_xy(ax + index, ay, 69U);
+                tile = 69U;
                 break;
 
             case '#':
-                set_bkg_tile_xy(ax + index, ay, 65U);
+                tile = 65U;
                 break;
 
             case ':':
-                set_bkg_tile_xy(ax + index, ay, 116U);
+                tile = 116U;
                 break;
 
             case 'a':
-                set_bkg_tile_xy(ax + index, ay, 119U);
+                tile = 119U;
                 break;
 
             case 'b':
-                set_bkg_tile_xy(ax + index, ay, 117U);
+                tile = 117U;
                 break;
             
             default:
                 if ((fChar >= 'A') &&  (fChar <= 'Z'))
-                    set_bkg_tile_xy(ax + index, ay, fChar + 25U);
+                    tile = fChar + 25U;
                 
                 if ((fChar >= '0') && (fChar <= '9'))
-                    set_bkg_tile_xy(ax + index, ay, fChar + 32U);
+                    tile = fChar + 32U;
                 break;
         }
-        index++;
+        set_bkg_tile_xy(ax + index, ay, tile);
+        ++index;
     }
 }
 
@@ -201,21 +198,18 @@ void printCongratsScreen(uint8_t ax, uint8_t ay, const __FlashStringHelper* amsg
     while (1)
     {
         char fChar = pgm_read_byte(p++);
-
+        uint8_t tile = 26U;
         switch (fChar) 
         {
             case '\0':
                return;
 
-            case ' ':
-                set_bkg_tile_xy(ax + index, ay, 26);
-                break;
-
             default:
                 if ((fChar >= 'A') &&  (fChar <= 'Z'))
-                    set_bkg_tile_xy(ax + index, ay, fChar - 'A');
+                    tile =  fChar - 'A';
                 break;
         }
-        index++;
+        set_bkg_tile_xy(ax + index, ay, tile);
+        ++index;
     }
 }
